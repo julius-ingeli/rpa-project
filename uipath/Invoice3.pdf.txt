@@ -1,0 +1,44 @@
+Invoice
+
+Service Provider Oy
+Mallintie 1
+00100 Mallila
+Company Code: 1234567-8
+VAT Code: FI12345678
+Päiväys: 15.12.2022
+Laskun numero: 153143
+Eräpäivä: 01.04.2021
+Customer:  Viivästyskorko: 8,0 %
+
+Company Ltd  Viitenumero: 1531439
+Ostajantie 1
+00100 Ostajankaupunki
+
+Additional Information:
+Invoice from period 01.11.-30.11.2022.
+
+Description Quantity Unit Unit Price VAT % VAT Total
+
+Installation Services 5 h 60€ 24% 72,00€ 372,00€
+
+Replacement Products 10 kpl 105€ 24% 252,00€ 1302,00€
+
+Cleaning Services 5 h 60€ 24% 72,00€ 372,00€
+
+Cleaning Wipes 10 kpl 105€ 24% 252,00€ 1302,00€
+
+Amount excl. VAT 2 700,00 €
+
+VAT  648,00 €
+
+Total 3 348,00 €
+
+Address Contact information Payment details
+
+Service Provider Oy Mikko Mallila Bank Nordea
+
+Mallintie 1 Puh: 0401234567 IBAN FI12 3456 7890 1234 56
+
+00100 Mallila Sposti: mikko.mallila@malliyritys.fi Bic/Swift NDEAFIHH
+
+www.malliyritys.com

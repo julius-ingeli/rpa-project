@@ -1,0 +1,19 @@
+Component  Oy LASKU FAKTURA sivu 1/1
+
+Customer Ltd Invoice Date: 01.10.2022
+Mikko Mallikas Invoicenumber: 1543235
+Ostajantie 1 Reference: 15432359
+00100 Helsinki Payment term: 14 days
+
+Description Qnt Units Unit Prc. VAT% VAT Total
+Keyboard Logitech 10 kpl 40.00 24% 96.00 496.00
+Brother printer 1 kpl 65.00 24% 15.60 80.60
+
+Amount excl. VAT: VAT: Total Amount: Duedate:
+465.00 111.60 576.60 15.10.2022
+
+Component Oy|Company Code: 1234567-9|Esimerkkikatu 1 A 2 |00200 Helsinki |www.nettisivut.fi |09 123 456
+laskut@laskutusyritys.fi
+
+IBAN: FI05 1234 5600 7891 01
+Reference: 15432359
