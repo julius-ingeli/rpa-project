@@ -1,85 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1 (Python 3.11.9 on win32)" generated="2025-02-16T20:18:32.256182" rpa="false" schemaversion="5">
+<robot generator="Robot 7.1 (Python 3.11.9 on win32)" generated="2025-02-16T21:14:45.275775" rpa="false" schemaversion="5">
 <suite id="s1" name="Invoice Verification" source="c:\Users\Adam\cigan\rpa-project\invoice_verification.robot">
 <test id="s1-t1" name="Invoice Verification" line="17">
 <kw name="Read table from CSV" owner="RPA.Tables">
-<msg time="2025-02-16T20:18:34.031376" level="INFO">&lt;IPython.core.display.Markdown object&gt;
+<msg time="2025-02-16T21:14:46.292564" level="INFO">&lt;IPython.core.display.Markdown object&gt;
 &lt;IPython.core.display.Markdown object&gt;</msg>
-<msg time="2025-02-16T20:18:34.034661" level="INFO">${loaded_data} = Table(columns=['Amount', 'RefNum', 'IBAN', 'Date'], rows=6)</msg>
+<msg time="2025-02-16T21:14:46.295553" level="INFO">${loaded_data} = Table(columns=['Amount', 'RefNum', 'IBAN', 'Date'], rows=3)</msg>
 <var>${loaded_data}</var>
 <arg>${excel_filepath}</arg>
 <arg>header=True</arg>
 <doc>Read a CSV file as a table.</doc>
-<status status="PASS" start="2025-02-16T20:18:33.664390" elapsed="0.370786"/>
+<status status="PASS" start="2025-02-16T21:14:46.076509" elapsed="0.219044"/>
 </kw>
 <for flavor="IN">
 <iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.297554" level="INFO">${amount} = 1674</msg>
+<var>${amount}</var>
+<arg>${row}</arg>
+<arg>Amount</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.297554" elapsed="0.001000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.298554" level="INFO">${refnum} = 12</msg>
+<var>${refnum}</var>
+<arg>${row}</arg>
+<arg>RefNum</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.298554" elapsed="0.001001"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.299555" level="INFO">${iban} =  FI12 3456 7890 1234 56</msg>
+<var>${iban}</var>
+<arg>${row}</arg>
+<arg>IBAN</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.299555" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.299555" level="INFO">${date} = 12/15/2022</msg>
+<var>${date}</var>
+<arg>${row}</arg>
+<arg>Date</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.299555" elapsed="0.000997"/>
+</kw>
+<if>
+<branch type="IF" condition="${amount} &lt;= 0">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${row}</arg>
+<arg>Amount=invalid</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-02-16T21:14:46.300552" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-02-16T21:14:46.300552" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2025-02-16T21:14:46.300552" elapsed="0.000000"/>
+</if>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-02-16T21:14:46.301555" level="INFO">Length is 2.</msg>
+<msg time="2025-02-16T21:14:46.301555" level="INFO">${refnum_length} = 2</msg>
+<var>${refnum_length}</var>
+<arg>${refnum}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.300552" elapsed="0.001003"/>
+</kw>
+<kw name="Get Substring" owner="String">
+<msg time="2025-02-16T21:14:46.301555" level="INFO">${first_char} = 1</msg>
+<var>${first_char}</var>
+<arg>${refnum}</arg>
+<arg>0</arg>
+<arg>1</arg>
+<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.301555" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${refnum_length} &lt; 3 or ${refnum_length} &gt; 20 or ${first_char} == 0">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${row}</arg>
+<arg>RefNum=invalid</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.302553" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-02-16T21:14:46.301555" elapsed="0.000998"/>
+</branch>
+<status status="PASS" start="2025-02-16T21:14:46.301555" elapsed="0.000998"/>
+</if>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-16T20:18:34.038477" level="INFO">{'Amount': '1674', 'RefNum': '1431432', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</msg>
+<msg time="2025-02-16T21:14:46.302553" level="INFO">{'Amount': '1674', 'RefNum': 'invalid', 'IBAN': ' FI12 3456 7890 1234 56', 'Date': '12/15/2022'}</msg>
 <arg>${row}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-16T20:18:34.037879" elapsed="0.000598"/>
+<status status="PASS" start="2025-02-16T21:14:46.302553" elapsed="0.000000"/>
 </kw>
-<var name="${row}">{'Amount': '1674', 'RefNum': '1431432', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</var>
-<status status="PASS" start="2025-02-16T20:18:34.037366" elapsed="0.001671"/>
+<var name="${row}">{'Amount': '1674', 'RefNum': '12', 'IBAN': ' FI12 3456 7890 1234 56', 'Date': '12/15/2022'}</var>
+<status status="PASS" start="2025-02-16T21:14:46.297554" elapsed="0.004999"/>
 </iter>
 <iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.303561" level="INFO">${amount} = 576.6</msg>
+<var>${amount}</var>
+<arg>${row}</arg>
+<arg>Amount</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.303561" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.303561" level="INFO">${refnum} = 15432359</msg>
+<var>${refnum}</var>
+<arg>${row}</arg>
+<arg>RefNum</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.303561" elapsed="0.001005"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.304566" level="INFO">${iban} =  FI05 1234 5600 7891 01</msg>
+<var>${iban}</var>
+<arg>${row}</arg>
+<arg>IBAN</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.304566" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.304566" level="INFO">${date} = 10/1/2022</msg>
+<var>${date}</var>
+<arg>${row}</arg>
+<arg>Date</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.304566" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${amount} &lt;= 0">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${row}</arg>
+<arg>Amount=invalid</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-02-16T21:14:46.305566" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-02-16T21:14:46.304566" elapsed="0.001000"/>
+</branch>
+<status status="PASS" start="2025-02-16T21:14:46.304566" elapsed="0.001000"/>
+</if>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-02-16T21:14:46.305566" level="INFO">Length is 8.</msg>
+<msg time="2025-02-16T21:14:46.305566" level="INFO">${refnum_length} = 8</msg>
+<var>${refnum_length}</var>
+<arg>${refnum}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.305566" elapsed="0.000000"/>
+</kw>
+<kw name="Get Substring" owner="String">
+<msg time="2025-02-16T21:14:46.306560" level="INFO">${first_char} = 1</msg>
+<var>${first_char}</var>
+<arg>${refnum}</arg>
+<arg>0</arg>
+<arg>1</arg>
+<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.305566" elapsed="0.000994"/>
+</kw>
+<if>
+<branch type="IF" condition="${refnum_length} &lt; 3 or ${refnum_length} &gt; 20 or ${first_char} == 0">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${row}</arg>
+<arg>RefNum=invalid</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-02-16T21:14:46.306560" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-02-16T21:14:46.306560" elapsed="0.001008"/>
+</branch>
+<status status="PASS" start="2025-02-16T21:14:46.306560" elapsed="0.001008"/>
+</if>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-16T20:18:34.039550" level="INFO">{'Amount': '576.6', 'RefNum': '15432359', 'IBAN': ': FI05 1234 5600 7891 01\r', 'Date': '10/1/2022'}</msg>
+<msg time="2025-02-16T21:14:46.308571" level="INFO">{'Amount': '576.6', 'RefNum': '15432359', 'IBAN': ' FI05 1234 5600 7891 01', 'Date': '10/1/2022'}</msg>
 <arg>${row}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-16T20:18:34.039550" elapsed="0.000995"/>
+<status status="PASS" start="2025-02-16T21:14:46.308571" elapsed="0.000000"/>
 </kw>
-<var name="${row}">{'Amount': '576.6', 'RefNum': '15432359', 'IBAN': ': FI05 1234 5600 7891 01\r', 'Date': '10/1/2022'}</var>
-<status status="PASS" start="2025-02-16T20:18:34.039037" elapsed="0.001508"/>
+<var name="${row}">{'Amount': '576.6', 'RefNum': '15432359', 'IBAN': ' FI05 1234 5600 7891 01', 'Date': '10/1/2022'}</var>
+<status status="PASS" start="2025-02-16T21:14:46.303561" elapsed="0.005010"/>
 </iter>
 <iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.309562" level="INFO">${amount} = 3348</msg>
+<var>${amount}</var>
+<arg>${row}</arg>
+<arg>Amount</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.308571" elapsed="0.000991"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.309562" level="INFO">${refnum} = 1531439</msg>
+<var>${refnum}</var>
+<arg>${row}</arg>
+<arg>RefNum</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.309562" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.309562" level="INFO">${iban} =  FI12 3456 7890 1234 56</msg>
+<var>${iban}</var>
+<arg>${row}</arg>
+<arg>IBAN</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.309562" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-16T21:14:46.310568" level="INFO">${date} = 12/15/2022</msg>
+<var>${date}</var>
+<arg>${row}</arg>
+<arg>Date</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.310568" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${amount} &lt;= 0">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${row}</arg>
+<arg>Amount=invalid</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-02-16T21:14:46.310568" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-02-16T21:14:46.310568" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2025-02-16T21:14:46.310568" elapsed="0.000000"/>
+</if>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-02-16T21:14:46.311556" level="INFO">Length is 7.</msg>
+<msg time="2025-02-16T21:14:46.311556" level="INFO">${refnum_length} = 7</msg>
+<var>${refnum_length}</var>
+<arg>${refnum}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.310568" elapsed="0.000988"/>
+</kw>
+<kw name="Get Substring" owner="String">
+<msg time="2025-02-16T21:14:46.312557" level="INFO">${first_char} = 1</msg>
+<var>${first_char}</var>
+<arg>${refnum}</arg>
+<arg>0</arg>
+<arg>1</arg>
+<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
+<status status="PASS" start="2025-02-16T21:14:46.311556" elapsed="0.001001"/>
+</kw>
+<if>
+<branch type="IF" condition="${refnum_length} &lt; 3 or ${refnum_length} &gt; 20 or ${first_char} == 0">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${row}</arg>
+<arg>RefNum=invalid</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-02-16T21:14:46.312557" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-02-16T21:14:46.312557" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2025-02-16T21:14:46.312557" elapsed="0.000000"/>
+</if>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-16T20:18:34.041642" level="INFO">{'Amount': '3348', 'RefNum': '1531439', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</msg>
+<msg time="2025-02-16T21:14:46.313563" level="INFO">{'Amount': '3348', 'RefNum': '1531439', 'IBAN': ' FI12 3456 7890 1234 56', 'Date': '12/15/2022'}</msg>
 <arg>${row}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-16T20:18:34.041642" elapsed="0.000522"/>
+<status status="PASS" start="2025-02-16T21:14:46.312557" elapsed="0.001006"/>
 </kw>
-<var name="${row}">{'Amount': '3348', 'RefNum': '1531439', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</var>
-<status status="PASS" start="2025-02-16T20:18:34.040545" elapsed="0.001619"/>
-</iter>
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-02-16T20:18:34.043814" level="INFO">{'Amount': '\r\n3 348', 'RefNum': '', 'IBAN': '', 'Date': ''}</msg>
-<arg>${row}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-16T20:18:34.043230" elapsed="0.001098"/>
-</kw>
-<var name="${row}">{'Amount': '\r\n3 348', 'RefNum': '', 'IBAN': '', 'Date': ''}</var>
-<status status="PASS" start="2025-02-16T20:18:34.042695" elapsed="0.001737"/>
-</iter>
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-02-16T20:18:34.045949" level="INFO">{'Amount': '', 'RefNum': '', 'IBAN': '', 'Date': ''}</msg>
-<arg>${row}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-16T20:18:34.044947" elapsed="0.001002"/>
-</kw>
-<var name="${row}">{'Amount': '', 'RefNum': '', 'IBAN': '', 'Date': ''}</var>
-<status status="PASS" start="2025-02-16T20:18:34.044432" elapsed="0.001517"/>
-</iter>
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-02-16T20:18:34.047941" level="INFO">{'Amount': '\r\n', 'RefNum': '', 'IBAN': '', 'Date': ''}</msg>
-<arg>${row}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-16T20:18:34.046943" elapsed="0.000998"/>
-</kw>
-<var name="${row}">{'Amount': '\r\n', 'RefNum': '', 'IBAN': '', 'Date': ''}</var>
-<status status="PASS" start="2025-02-16T20:18:34.046943" elapsed="0.000998"/>
+<var name="${row}">{'Amount': '3348', 'RefNum': '1531439', 'IBAN': ' FI12 3456 7890 1234 56', 'Date': '12/15/2022'}</var>
+<status status="PASS" start="2025-02-16T21:14:46.308571" elapsed="0.004992"/>
 </iter>
 <var>${row}</var>
 <value>@{loaded_data}</value>
-<status status="PASS" start="2025-02-16T20:18:34.036265" elapsed="0.011676"/>
+<status status="PASS" start="2025-02-16T21:14:46.296552" elapsed="0.017011"/>
 </for>
-<status status="PASS" start="2025-02-16T20:18:33.661381" elapsed="0.399566"/>
+<status status="PASS" start="2025-02-16T21:14:46.074508" elapsed="0.239055"/>
 </test>
-<status status="PASS" start="2025-02-16T20:18:32.268185" elapsed="1.830769"/>
+<status status="PASS" start="2025-02-16T21:14:45.282770" elapsed="1.039789"/>
 </suite>
 <statistics>
 <total>
