@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.11.9 on win32)" generated="2025-02-16T20:18:32.256182" rpa="false" schemaversion="5">
+<suite id="s1" name="Invoice Verification" source="c:\Users\Adam\cigan\rpa-project\invoice_verification.robot">
+<test id="s1-t1" name="Invoice Verification" line="17">
+<kw name="Read table from CSV" owner="RPA.Tables">
+<msg time="2025-02-16T20:18:34.031376" level="INFO">&lt;IPython.core.display.Markdown object&gt;
+&lt;IPython.core.display.Markdown object&gt;</msg>
+<msg time="2025-02-16T20:18:34.034661" level="INFO">${loaded_data} = Table(columns=['Amount', 'RefNum', 'IBAN', 'Date'], rows=6)</msg>
+<var>${loaded_data}</var>
+<arg>${excel_filepath}</arg>
+<arg>header=True</arg>
+<doc>Read a CSV file as a table.</doc>
+<status status="PASS" start="2025-02-16T20:18:33.664390" elapsed="0.370786"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-16T20:18:34.038477" level="INFO">{'Amount': '1674', 'RefNum': '1431432', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</msg>
+<arg>${row}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-16T20:18:34.037879" elapsed="0.000598"/>
+</kw>
+<var name="${row}">{'Amount': '1674', 'RefNum': '1431432', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</var>
+<status status="PASS" start="2025-02-16T20:18:34.037366" elapsed="0.001671"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-16T20:18:34.039550" level="INFO">{'Amount': '576.6', 'RefNum': '15432359', 'IBAN': ': FI05 1234 5600 7891 01\r', 'Date': '10/1/2022'}</msg>
+<arg>${row}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-16T20:18:34.039550" elapsed="0.000995"/>
+</kw>
+<var name="${row}">{'Amount': '576.6', 'RefNum': '15432359', 'IBAN': ': FI05 1234 5600 7891 01\r', 'Date': '10/1/2022'}</var>
+<status status="PASS" start="2025-02-16T20:18:34.039037" elapsed="0.001508"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-16T20:18:34.041642" level="INFO">{'Amount': '3348', 'RefNum': '1531439', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</msg>
+<arg>${row}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-16T20:18:34.041642" elapsed="0.000522"/>
+</kw>
+<var name="${row}">{'Amount': '3348', 'RefNum': '1531439', 'IBAN': ' FI12 3456 7890 1234 56\r', 'Date': '12/15/2022'}</var>
+<status status="PASS" start="2025-02-16T20:18:34.040545" elapsed="0.001619"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-16T20:18:34.043814" level="INFO">{'Amount': '\r\n3 348', 'RefNum': '', 'IBAN': '', 'Date': ''}</msg>
+<arg>${row}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-16T20:18:34.043230" elapsed="0.001098"/>
+</kw>
+<var name="${row}">{'Amount': '\r\n3 348', 'RefNum': '', 'IBAN': '', 'Date': ''}</var>
+<status status="PASS" start="2025-02-16T20:18:34.042695" elapsed="0.001737"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-16T20:18:34.045949" level="INFO">{'Amount': '', 'RefNum': '', 'IBAN': '', 'Date': ''}</msg>
+<arg>${row}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-16T20:18:34.044947" elapsed="0.001002"/>
+</kw>
+<var name="${row}">{'Amount': '', 'RefNum': '', 'IBAN': '', 'Date': ''}</var>
+<status status="PASS" start="2025-02-16T20:18:34.044432" elapsed="0.001517"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-16T20:18:34.047941" level="INFO">{'Amount': '\r\n', 'RefNum': '', 'IBAN': '', 'Date': ''}</msg>
+<arg>${row}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-16T20:18:34.046943" elapsed="0.000998"/>
+</kw>
+<var name="${row}">{'Amount': '\r\n', 'RefNum': '', 'IBAN': '', 'Date': ''}</var>
+<status status="PASS" start="2025-02-16T20:18:34.046943" elapsed="0.000998"/>
+</iter>
+<var>${row}</var>
+<value>@{loaded_data}</value>
+<status status="PASS" start="2025-02-16T20:18:34.036265" elapsed="0.011676"/>
+</for>
+<status status="PASS" start="2025-02-16T20:18:33.661381" elapsed="0.399566"/>
+</test>
+<status status="PASS" start="2025-02-16T20:18:32.268185" elapsed="1.830769"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Invoice Verification">Invoice Verification</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
