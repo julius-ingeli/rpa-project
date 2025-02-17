@@ -39,27 +39,27 @@ Invoice Verification
             Set To Dictionary    ${row}    RefNum=invalid
         END
 
-
-
         #Rules regarding the iban verification are: the iban has to start with "FI", needs to have 16 numbers after the "FI", total of 18 characters
         ${iban}    Evaluate    str("${iban}").replace(" ", "")
-        Set To Dictionary    ${row}    IBAN=${iban}
-        
+        Set To Dictionary    ${row}    IBAN=${iban}  
         ${iban_length}    Get Length    ${iban}
+
         ${iban_first_char}    Get Substring    ${iban}    0    2
         IF    "${iban_first_char}" != "FI" or ${iban_length} != 18
             Set To Dictionary    ${row}    IBAN=invalid
         END
         ${iban_validation}    Run Keyword And Return Status    Should Match Regexp    ${iban}    ^FI[0-9]{16}$
-        IF    ${iban_validation} == "False"
+        IF    not ${iban_validation}
             Set To Dictionary    ${row}    IBAN=invalid
+            Log    ${iban_validation}
         END 
         
         #Date validation is pretty simple - the main goal is to create a correct regex
-        ${date_validation}    Run Keyword And Return Status    Should Match Regexp    12/15/2022     ^(0[1-9]|1[0-2])/(0[1-9]|1[0-9]|2[0-9]|30|31)/[0-9]{4}$
+        ${date_validation}    Run Keyword And Return Status    Should Match Regexp    ${date}     ^((0?[1-9])|1[0-2])/((0?[1-9])|[12][0-9]|30|31)/[0-9]{4}$
 
-        IF    ${date_validation} == "False"
-            Set To Dictionary    ${row}    Date="invalid"
+        IF    not ${date_validation}
+            Set To Dictionary    ${row}    Date=invalid
+            Log    ${date_validation}
         END
         #Cant correctly write rows to the csv yet
         Append To Csv File    ${excel_filepath}    ${row}
