@@ -7,6 +7,9 @@ Library    SeleniumLibrary
 Library    DateTime
 Library    BuiltIn
 Library    RPA.Tables
+Library    RPA.Excel.Application
+Library    RPA.Word.Application
+Library    CSVLibrary
 
 
 *** Variables ***
@@ -58,7 +61,7 @@ Invoice Verification
         IF    ${date_validation} == "False"
             Set To Dictionary    ${row}    Date="invalid"
         END
-        Log    ${row}   
+        #Cant correctly write rows to the csv yet
+        Append To Csv File    ${excel_filepath}    ${row}
     END
-    Write Table To CSV    ${loaded_data}    ${EXCEL_FILEPATH}    header=True
    
