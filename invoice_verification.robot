@@ -60,8 +60,14 @@ Invoice Verification
         IF    not ${date_validation}
             Set To Dictionary    ${row}    Date=invalid
             Log    ${date_validation}
+        ELSE
+        #In order to parse these dates into a database, we need to adjust the date format to fit the database requirements 
+            ${formatted_date}=    Convert Date    ${date}    result_format=%Y-%m-%d    date_format=%m/%d/%Y
+            Log    ${formatted_date}
+            Set To Dictionary    ${row}    Date=${formatted_date}
         END
-        #Cant correctly write rows to the csv yet
-        Append To Csv File    ${excel_filepath}    ${row}
+        #Near the end, we convert the whole row into a list for better future handling
+        ${final_row}    Create List    ${amount}    ${refnum}    ${iban}    ${formatted_date}
+        Append To Csv File    ${excel_filepath}    ${final_row}
     END
    
