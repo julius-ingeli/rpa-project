@@ -10,10 +10,12 @@ Library    RPA.Tables
 Library    RPA.Excel.Application
 Library    RPA.Word.Application
 Library    CSVLibrary
+Library    DatabaseLibrary
 
 
 *** Variables ***
 ${excel_filepath}    ${CURDIR}/temptest.csv
+${db_connection}   odbc://DSN=MySQLServer;Database=RPA_project_db
 
 
 *** Test Cases ***
@@ -69,5 +71,7 @@ Invoice Verification
         #Near the end, we convert the whole row into a list for better future handling
         ${final_row}    Create List    ${amount}    ${refnum}    ${iban}    ${formatted_date}
         Append To Csv File    ${excel_filepath}    ${final_row}
+        Connect To Database    ${db_connection}
+
     END
    
