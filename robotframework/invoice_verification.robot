@@ -10,6 +10,8 @@ Library    RPA.Excel.Application
 Library    RPA.Word.Application
 Library    CSVLibrary
 Library    DatabaseLibrary
+Library    RPA.SAP
+
 
 
 *** Variables ***
@@ -24,16 +26,17 @@ ${db_port}    3306
 Invoice Verification
 
     #Loading .csv
-    ${excel_filepath}=    Set Variable    temptest.csv
+    ${excel_filepath}=    Set Variable    temp.csv
 
     ${loaded_data}    Read Table From CSV    ${excel_filepath}    header=True
 
     FOR    ${row}    IN    @{loaded_data}
         ${amount}=    Get From Dictionary    ${row}    Amount
-        ${refnum}=    Get From Dictionary    ${row}    RefNum
+        ${refnum}=    Get From Dictionary    ${row}    Reference Number
         ${iban}=    Get From Dictionary    ${row}    IBAN
         ${date}=    Get From Dictionary    ${row}    Date
-
+        ${invNumber}=    Get From Dictionary    ${row}    Invoice Number
+ 
         #Dont forget that the "cleaned" data from Set To Dictionary still needs to be rewritten to the actual csv file
         IF    ${amount} <= 0
             Set To Dictionary    ${row}    Amount=invalid
@@ -77,9 +80,35 @@ Invoice Verification
         
         #export to db
         Connect To Database  pymysql  ${DB_NAME}  ${DB_USER}  ${DB_PASS}  ${DB_HOST}  ${DB_PORT}
-        ${result}  Execute Sql String   INSERT INTO invoices (amount,refnum,iban,date) VALUES (${amount}, ${refnum}, '${iban}', '${formatted_date}');
+        ${result}  Execute Sql String   INSERT INTO invoices (amount,refnum,iban,date,invoicenr) VALUES (${amount}, ${refnum}, '${iban}', '${formatted_date}', ${invNumber});
         Log  ${result}
         Disconnect From Database
 
     END
-   
+
+Invoice Product Verification
+    ${excel_filepath}=    Set Variable    tempProds.csv
+
+    ${loaded_data}    Read Table From CSV    ${excel_filepath}    header=True 
+    FOR    ${row}    IN    @{loaded_data}
+    # get values
+        ${desc}=    Get From Dictionary    ${row}    Description
+        ${quan}=    Get From Dictionary    ${row}    Quantity
+        ${unit}=    Get From Dictionary    ${row}    Unit
+        ${unitPrice}=    Get From Dictionary    ${row}    Unit Price
+        ${vatPerc}=    Get From Dictionary    ${row}    VAT %
+        ${vatTot}=    Get From Dictionary    ${row}    VAT Total
+        ${priceTot}=    Get From Dictionary    ${row}    Total Price
+        ${invNumber}=    Get From Dictionary    ${row}    Invoice number
+
+
+    #verifying if the price checks out
+        ${calcTotal}=     Evaluate     ${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)
+        Should Be Equal As Numbers   ${calcTotal}    ${priceTot}
+        
+        Connect To Database  pymysql  ${DB_NAME}  ${DB_USER}  ${DB_PASS}  ${DB_HOST}  ${DB_PORT}
+        ${result}  Execute Sql String   INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});
+        Log  ${result}
+        Disconnect From Database
+
+    END    

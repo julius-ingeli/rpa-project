@@ -1,0 +1,9 @@
+Description,Quantity,Unit,Unit Price,VAT %,VAT Total,Total Price,Invoice number
+Installation Services,5,h,60,24,72,372,1
+Replacement Products,10,kpl,105,24,252,1302,1
+Keyboard Logitech,10,kpl,40,24,96,496,2
+Brother printer,1,kpl,65,24,15.6,80.6,2
+Installation Services,5,h,60,24,72,372,3
+Replacement Products,10,kpl,105,24,252,1302,3
+Cleaning Services,5,h,60,24,72,372,3
+Cleaning Wipes,10,kpl,105,24,252,1302,3

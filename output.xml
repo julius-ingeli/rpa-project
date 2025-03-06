@@ -1,231 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.11.0 on win32)" generated="2025-02-27T17:40:52.424634" rpa="false" schemaversion="5">
+<robot generator="Robot 7.2.2 (Python 3.11.0 on win32)" generated="2025-03-06T16:40:13.022077" rpa="false" schemaversion="5">
 <suite id="s1" name="Invoice Verification" source="c:\Users\julko\Desktop\School Stuff\sraa\RPA Project\robotframework\invoice_verification.robot">
-<test id="s1-t1" name="Invoice Verification" line="24">
+<test id="s1-t1" name="Invoice Product Verification" line="89">
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.535952" level="INFO">${excel_filepath} = temptest.csv</msg>
+<msg time="2025-03-06T16:40:13.169500" level="INFO">${excel_filepath} = tempProds.csv</msg>
 <var>${excel_filepath}</var>
-<arg>temptest.csv</arg>
+<arg>tempProds.csv</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.535952" elapsed="0.001000"/>
+<status status="PASS" start="2025-03-06T16:40:13.169500" elapsed="0.002000"/>
 </kw>
 <kw name="Read table from CSV" owner="RPA.Tables">
-<msg time="2025-02-27T17:40:52.538366" level="INFO">${loaded_data} = Table(columns=['Amount', 'RefNum', 'IBAN', 'Date'], rows=3)</msg>
+<msg time="2025-03-06T16:40:13.172502" level="INFO">${loaded_data} = Table(columns=['Description', 'Quantity', 'Unit', 'Unit Price', 'VAT %', 'VAT Total', 'Total Price', 'Invoice number'], rows=8)</msg>
 <var>${loaded_data}</var>
 <arg>${excel_filepath}</arg>
 <arg>header=True</arg>
 <doc>Read a CSV file as a table.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.536952" elapsed="0.001414"/>
+<status status="PASS" start="2025-03-06T16:40:13.171500" elapsed="0.001002"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.538366" level="INFO">${amount} = 1674</msg>
-<var>${amount}</var>
+<msg time="2025-03-06T16:40:13.173500" level="INFO">${desc} = Installation Services</msg>
+<var>${desc}</var>
 <arg>${row}</arg>
-<arg>Amount</arg>
+<arg>Description</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.538366" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.173500" elapsed="0.000000"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.539506" level="INFO">${refnum} = 1431432</msg>
-<var>${refnum}</var>
+<msg time="2025-03-06T16:40:13.173500" level="INFO">${quan} = 5</msg>
+<var>${quan}</var>
 <arg>${row}</arg>
-<arg>RefNum</arg>
+<arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.539506" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.173500" elapsed="0.000000"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.539506" level="INFO">${iban} =  FI12 3456 7890 1234 56</msg>
-<var>${iban}</var>
+<msg time="2025-03-06T16:40:13.174500" level="INFO">${unit} = h</msg>
+<var>${unit}</var>
 <arg>${row}</arg>
-<arg>IBAN</arg>
+<arg>Unit</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.539506" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.174500" elapsed="0.000000"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.539506" level="INFO">${date} = 12/15/2022</msg>
-<var>${date}</var>
+<msg time="2025-03-06T16:40:13.174500" level="INFO">${unitPrice} = 60</msg>
+<var>${unitPrice}</var>
 <arg>${row}</arg>
-<arg>Date</arg>
+<arg>Unit Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.539506" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.174500" elapsed="0.000000"/>
 </kw>
-<if>
-<branch type="IF" condition="${amount} &lt;= 0">
-<kw name="Set To Dictionary" owner="Collections">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.174500" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
 <arg>${row}</arg>
-<arg>Amount=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.539506" elapsed="0.001001"/>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.174500" elapsed="0.000000"/>
 </kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.539506" elapsed="0.001001"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.539506" elapsed="0.001001"/>
-</if>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.540507" level="INFO">Length is 7.</msg>
-<msg time="2025-02-27T17:40:52.540507" level="INFO">${refnum_length} = 7</msg>
-<var>${refnum_length}</var>
-<arg>${refnum}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.540507" elapsed="0.000000"/>
-</kw>
-<kw name="Get Substring" owner="String">
-<msg time="2025-02-27T17:40:52.540507" level="INFO">${refnum_first_char} = 1</msg>
-<var>${refnum_first_char}</var>
-<arg>${refnum}</arg>
-<arg>0</arg>
-<arg>1</arg>
-<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.540507" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="${refnum_length} &lt; 3 or ${refnum_length} &gt; 20 or ${refnum_first_char} == 0">
-<kw name="Set To Dictionary" owner="Collections">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.174500" level="INFO">${vatTot} = 72</msg>
+<var>${vatTot}</var>
 <arg>${row}</arg>
-<arg>RefNum=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.540507" elapsed="0.000000"/>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.174500" elapsed="0.000000"/>
 </kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.540507" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.540507" elapsed="0.000000"/>
-</if>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.175499" level="INFO">${priceTot} = 372</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.175499" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.175499" level="INFO">${invNumber} = 1</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.175499" elapsed="0.000000"/>
+</kw>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.541506" level="INFO">${iban} = FI1234567890123456</msg>
-<var>${iban}</var>
-<arg>str("${iban}").replace(" ", "")</arg>
+<msg time="2025-03-06T16:40:13.175499" level="INFO">${calcTotal} = 372.0</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.541506" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.175499" elapsed="0.000000"/>
 </kw>
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=${iban}</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.541506" elapsed="0.000000"/>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.175499" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.175499" elapsed="0.000000"/>
 </kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.541506" level="INFO">Length is 18.</msg>
-<msg time="2025-02-27T17:40:52.541506" level="INFO">${iban_length} = 18</msg>
-<var>${iban_length}</var>
-<arg>${iban}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.541506" elapsed="0.000000"/>
-</kw>
-<kw name="Get Substring" owner="String">
-<msg time="2025-02-27T17:40:52.541506" level="INFO">${iban_first_char} = FI</msg>
-<var>${iban_first_char}</var>
-<arg>${iban}</arg>
-<arg>0</arg>
-<arg>2</arg>
-<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.541506" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="&quot;${iban_first_char}&quot; != &quot;FI&quot; or ${iban_length} != 18">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.542507" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.541506" elapsed="0.001001"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.541506" elapsed="0.001001"/>
-</if>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Should Match Regexp" owner="BuiltIn">
-<arg>${iban}</arg>
-<arg>^FI[0-9]{16}$</arg>
-<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.542507" elapsed="0.000000"/>
-</kw>
-<msg time="2025-02-27T17:40:52.542507" level="INFO">${iban_validation} = True</msg>
-<var>${iban_validation}</var>
-<arg>Should Match Regexp</arg>
-<arg>${iban}</arg>
-<arg>^FI[0-9]{16}$</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.542507" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="not ${iban_validation}">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.542507" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${iban_validation}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.542507" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.542507" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.542507" elapsed="0.001000"/>
-</if>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Should Match Regexp" owner="BuiltIn">
-<arg>${date}</arg>
-<arg>^((0?[1-9])|1[0-2])/((0?[1-9])|[12][0-9]|30|31)/[0-9]{4}$</arg>
-<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.543507" elapsed="0.000000"/>
-</kw>
-<msg time="2025-02-27T17:40:52.543507" level="INFO">${date_validation} = True</msg>
-<var>${date_validation}</var>
-<arg>Should Match Regexp</arg>
-<arg>${date}</arg>
-<arg>^((0?[1-9])|1[0-2])/((0?[1-9])|[12][0-9]|30|31)/[0-9]{4}$</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.543507" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="not ${date_validation}">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>Date=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.543507" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${date_validation}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.543507" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.543507" elapsed="0.000000"/>
-</branch>
-<branch type="ELSE">
-<kw name="Convert Date" owner="DateTime">
-<msg time="2025-02-27T17:40:52.546506" level="INFO">${formatted_date} = 2022-12-15</msg>
-<var>${formatted_date}</var>
-<arg>${date}</arg>
-<arg>result_format=%Y-%m-%d</arg>
-<arg>date_format=%m/%d/%Y</arg>
-<doc>Converts between supported `date formats`.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.543507" elapsed="0.002999"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.546506" level="INFO">2022-12-15</msg>
-<arg>${formatted_date}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.546506" elapsed="0.000000"/>
-</kw>
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>Date=${formatted_date}</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.546506" elapsed="0.000000"/>
-</kw>
-<status status="PASS" start="2025-02-27T17:40:52.543507" elapsed="0.002999"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.543507" elapsed="0.002999"/>
-</if>
 <kw name="Connect To Database" owner="DatabaseLibrary">
-<msg time="2025-02-27T17:40:52.547508" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
-<msg time="2025-02-27T17:40:52.547508" level="INFO">Configuration file doesn't exist</msg>
-<msg time="2025-02-27T17:40:52.582449" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<msg time="2025-03-06T16:40:13.176747" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.176747" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.205507" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
 <arg>pymysql</arg>
 <arg>${DB_NAME}</arg>
 <arg>${DB_USER}</arg>
@@ -235,238 +112,115 @@
 <doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
 Along with listed commonly used arguments (`db_name`, `db_host` etc.)
 you can set any other DB module specific parameters as key/value pairs.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.546506" elapsed="0.062085"/>
+<status status="PASS" start="2025-03-06T16:40:13.175499" elapsed="0.059095"/>
 </kw>
 <kw name="Execute Sql String" owner="DatabaseLibrary">
-<msg time="2025-02-27T17:40:52.609121" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO invoices (amount,refnum,iban,date) VALUES (1674, 1431432, 'FI1234567890123456', '2022-12-15');&lt;/code&gt;</msg>
-<msg time="2025-02-27T17:40:52.610163" level="INFO">Commit the transaction</msg>
-<msg time="2025-02-27T17:40:52.617983" level="INFO">${result} = None</msg>
+<msg time="2025-03-06T16:40:13.235632" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Installation Services', 5, 'h', 60,24,72,372,1);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.236148" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.240896" level="INFO">${result} = None</msg>
 <var>${result}</var>
-<arg>INSERT INTO invoices (amount,refnum,iban,date) VALUES (${amount}, ${refnum}, '${iban}', '${formatted_date}');</arg>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
 <doc>Executes the ``sql_string`` as a single SQL command.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.608591" elapsed="0.009899"/>
+<status status="PASS" start="2025-03-06T16:40:13.235115" elapsed="0.005781"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.618490" level="INFO">None</msg>
+<msg time="2025-03-06T16:40:13.240896" level="INFO">None</msg>
 <arg>${result}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.618490" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.240896" elapsed="0.000000"/>
 </kw>
 <kw name="Disconnect From Database" owner="DatabaseLibrary">
 <doc>Disconnects from the database.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.618490" elapsed="0.000509"/>
+<status status="PASS" start="2025-03-06T16:40:13.241421" elapsed="0.000000"/>
 </kw>
-<var name="${row}">{'Amount': '1674', 'RefNum': '1431432', 'IBAN': ' FI12 3456 7890 1234 56', 'Date': '12/15/2022'}</var>
-<status status="PASS" start="2025-02-27T17:40:52.538366" elapsed="0.080633"/>
+<var name="${row}">{'Description': 'Installation Services', 'Quantity': '5', 'Unit': 'h', 'Unit Price': '60', 'VAT %': '24', 'VAT Total': '72', 'Total Price': '372', 'Invoice number': '1'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.173500" elapsed="0.067921"/>
 </iter>
 <iter>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.619506" level="INFO">${amount} = 576.6</msg>
-<var>${amount}</var>
+<msg time="2025-03-06T16:40:13.241939" level="INFO">${desc} = Replacement Products</msg>
+<var>${desc}</var>
 <arg>${row}</arg>
-<arg>Amount</arg>
+<arg>Description</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.619506" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.241421" elapsed="0.000518"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.619506" level="INFO">${refnum} = 15432359</msg>
-<var>${refnum}</var>
+<msg time="2025-03-06T16:40:13.241939" level="INFO">${quan} = 10</msg>
+<var>${quan}</var>
 <arg>${row}</arg>
-<arg>RefNum</arg>
+<arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.619506" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.241939" elapsed="0.000000"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.620015" level="INFO">${iban} =  FI05 1234 5600 7891 01</msg>
-<var>${iban}</var>
+<msg time="2025-03-06T16:40:13.242460" level="INFO">${unit} = kpl</msg>
+<var>${unit}</var>
 <arg>${row}</arg>
-<arg>IBAN</arg>
+<arg>Unit</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.620015" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.241939" elapsed="0.000521"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.620015" level="INFO">${date} = 10/1/2022</msg>
-<var>${date}</var>
+<msg time="2025-03-06T16:40:13.242460" level="INFO">${unitPrice} = 105</msg>
+<var>${unitPrice}</var>
 <arg>${row}</arg>
-<arg>Date</arg>
+<arg>Unit Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.620015" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.242460" elapsed="0.000000"/>
 </kw>
-<if>
-<branch type="IF" condition="${amount} &lt;= 0">
-<kw name="Set To Dictionary" owner="Collections">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.242460" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
 <arg>${row}</arg>
-<arg>Amount=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.620526" elapsed="0.000000"/>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.242460" elapsed="0.000522"/>
 </kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.620015" elapsed="0.000511"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.620015" elapsed="0.000511"/>
-</if>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.620526" level="INFO">Length is 8.</msg>
-<msg time="2025-02-27T17:40:52.621042" level="INFO">${refnum_length} = 8</msg>
-<var>${refnum_length}</var>
-<arg>${refnum}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.620526" elapsed="0.000516"/>
-</kw>
-<kw name="Get Substring" owner="String">
-<msg time="2025-02-27T17:40:52.621042" level="INFO">${refnum_first_char} = 1</msg>
-<var>${refnum_first_char}</var>
-<arg>${refnum}</arg>
-<arg>0</arg>
-<arg>1</arg>
-<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.621042" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="${refnum_length} &lt; 3 or ${refnum_length} &gt; 20 or ${refnum_first_char} == 0">
-<kw name="Set To Dictionary" owner="Collections">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.242982" level="INFO">${vatTot} = 252</msg>
+<var>${vatTot}</var>
 <arg>${row}</arg>
-<arg>RefNum=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.621042" elapsed="0.000000"/>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.242982" elapsed="0.000000"/>
 </kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.621042" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.621042" elapsed="0.000630"/>
-</if>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.242982" level="INFO">${priceTot} = 1302</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.242982" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.243505" level="INFO">${invNumber} = 1</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.242982" elapsed="0.000523"/>
+</kw>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.621672" level="INFO">${iban} = FI0512345600789101</msg>
-<var>${iban}</var>
-<arg>str("${iban}").replace(" ", "")</arg>
+<msg time="2025-03-06T16:40:13.243505" level="INFO">${calcTotal} = 1302.0</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.621672" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.243505" elapsed="0.000000"/>
 </kw>
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=${iban}</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.621672" elapsed="0.000000"/>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.244023" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.243505" elapsed="0.000518"/>
 </kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.621672" level="INFO">Length is 18.</msg>
-<msg time="2025-02-27T17:40:52.621672" level="INFO">${iban_length} = 18</msg>
-<var>${iban_length}</var>
-<arg>${iban}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.621672" elapsed="0.000000"/>
-</kw>
-<kw name="Get Substring" owner="String">
-<msg time="2025-02-27T17:40:52.622724" level="INFO">${iban_first_char} = FI</msg>
-<var>${iban_first_char}</var>
-<arg>${iban}</arg>
-<arg>0</arg>
-<arg>2</arg>
-<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.621672" elapsed="0.001052"/>
-</kw>
-<if>
-<branch type="IF" condition="&quot;${iban_first_char}&quot; != &quot;FI&quot; or ${iban_length} != 18">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.622724" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.622724" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.622724" elapsed="0.000000"/>
-</if>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Should Match Regexp" owner="BuiltIn">
-<arg>${iban}</arg>
-<arg>^FI[0-9]{16}$</arg>
-<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.622724" elapsed="0.000000"/>
-</kw>
-<msg time="2025-02-27T17:40:52.622724" level="INFO">${iban_validation} = True</msg>
-<var>${iban_validation}</var>
-<arg>Should Match Regexp</arg>
-<arg>${iban}</arg>
-<arg>^FI[0-9]{16}$</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.622724" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="not ${iban_validation}">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.622724" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${iban_validation}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.622724" elapsed="0.001014"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.622724" elapsed="0.001014"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.622724" elapsed="0.001014"/>
-</if>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Should Match Regexp" owner="BuiltIn">
-<arg>${date}</arg>
-<arg>^((0?[1-9])|1[0-2])/((0?[1-9])|[12][0-9]|30|31)/[0-9]{4}$</arg>
-<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.623738" elapsed="0.000000"/>
-</kw>
-<msg time="2025-02-27T17:40:52.623738" level="INFO">${date_validation} = True</msg>
-<var>${date_validation}</var>
-<arg>Should Match Regexp</arg>
-<arg>${date}</arg>
-<arg>^((0?[1-9])|1[0-2])/((0?[1-9])|[12][0-9]|30|31)/[0-9]{4}$</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.623738" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="not ${date_validation}">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>Date=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.623738" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${date_validation}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.623738" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.623738" elapsed="0.000000"/>
-</branch>
-<branch type="ELSE">
-<kw name="Convert Date" owner="DateTime">
-<msg time="2025-02-27T17:40:52.624738" level="INFO">${formatted_date} = 2022-10-01</msg>
-<var>${formatted_date}</var>
-<arg>${date}</arg>
-<arg>result_format=%Y-%m-%d</arg>
-<arg>date_format=%m/%d/%Y</arg>
-<doc>Converts between supported `date formats`.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.623738" elapsed="0.001000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.624738" level="INFO">2022-10-01</msg>
-<arg>${formatted_date}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.624738" elapsed="0.000000"/>
-</kw>
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>Date=${formatted_date}</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.624738" elapsed="0.000000"/>
-</kw>
-<status status="PASS" start="2025-02-27T17:40:52.623738" elapsed="0.001000"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.623738" elapsed="0.001000"/>
-</if>
 <kw name="Connect To Database" owner="DatabaseLibrary">
-<msg time="2025-02-27T17:40:52.624738" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
-<msg time="2025-02-27T17:40:52.624738" level="INFO">Configuration file doesn't exist</msg>
-<msg time="2025-02-27T17:40:52.624738" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<msg time="2025-03-06T16:40:13.244023" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.244560" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.244560" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
 <arg>pymysql</arg>
 <arg>${DB_NAME}</arg>
 <arg>${DB_USER}</arg>
@@ -476,238 +230,115 @@ you can set any other DB module specific parameters as key/value pairs.</doc>
 <doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
 Along with listed commonly used arguments (`db_name`, `db_host` etc.)
 you can set any other DB module specific parameters as key/value pairs.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.624738" elapsed="0.014134"/>
+<status status="PASS" start="2025-03-06T16:40:13.244023" elapsed="0.003672"/>
 </kw>
 <kw name="Execute Sql String" owner="DatabaseLibrary">
-<msg time="2025-02-27T17:40:52.639381" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO invoices (amount,refnum,iban,date) VALUES (576.6, 15432359, 'FI0512345600789101', '2022-10-01');&lt;/code&gt;</msg>
-<msg time="2025-02-27T17:40:52.640399" level="INFO">Commit the transaction</msg>
-<msg time="2025-02-27T17:40:52.645020" level="INFO">${result} = None</msg>
+<msg time="2025-03-06T16:40:13.247695" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Replacement Products', 10, 'kpl', 105,24,252,1302,1);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.248787" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.253611" level="INFO">${result} = None</msg>
 <var>${result}</var>
-<arg>INSERT INTO invoices (amount,refnum,iban,date) VALUES (${amount}, ${refnum}, '${iban}', '${formatted_date}');</arg>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
 <doc>Executes the ``sql_string`` as a single SQL command.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.639381" elapsed="0.005639"/>
+<status status="PASS" start="2025-03-06T16:40:13.247695" elapsed="0.005916"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.645529" level="INFO">None</msg>
+<msg time="2025-03-06T16:40:13.254115" level="INFO">None</msg>
 <arg>${result}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.645529" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.253611" elapsed="0.000504"/>
 </kw>
 <kw name="Disconnect From Database" owner="DatabaseLibrary">
 <doc>Disconnects from the database.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.645529" elapsed="0.000507"/>
+<status status="PASS" start="2025-03-06T16:40:13.254115" elapsed="0.000000"/>
 </kw>
-<var name="${row}">{'Amount': '576.6', 'RefNum': '15432359', 'IBAN': ' FI05 1234 5600 7891 01', 'Date': '10/1/2022'}</var>
-<status status="PASS" start="2025-02-27T17:40:52.618999" elapsed="0.027037"/>
+<var name="${row}">{'Description': 'Replacement Products', 'Quantity': '10', 'Unit': 'kpl', 'Unit Price': '105', 'VAT %': '24', 'VAT Total': '252', 'Total Price': '1302', 'Invoice number': '1'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.241421" elapsed="0.013210"/>
 </iter>
 <iter>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.646569" level="INFO">${amount} = 3348</msg>
-<var>${amount}</var>
+<msg time="2025-03-06T16:40:13.255166" level="INFO">${desc} = Keyboard Logitech</msg>
+<var>${desc}</var>
 <arg>${row}</arg>
-<arg>Amount</arg>
+<arg>Description</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.646036" elapsed="0.000533"/>
+<status status="PASS" start="2025-03-06T16:40:13.254631" elapsed="0.000535"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.646569" level="INFO">${refnum} = 1531439</msg>
-<var>${refnum}</var>
+<msg time="2025-03-06T16:40:13.255166" level="INFO">${quan} = 10</msg>
+<var>${quan}</var>
 <arg>${row}</arg>
-<arg>RefNum</arg>
+<arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.646569" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.255166" elapsed="0.000000"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.647078" level="INFO">${iban} =  FI12 3456 7890 1234 56</msg>
-<var>${iban}</var>
+<msg time="2025-03-06T16:40:13.255686" level="INFO">${unit} = kpl</msg>
+<var>${unit}</var>
 <arg>${row}</arg>
-<arg>IBAN</arg>
+<arg>Unit</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.647078" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.255686" elapsed="0.000000"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-02-27T17:40:52.647078" level="INFO">${date} = 12/15/2022</msg>
-<var>${date}</var>
+<msg time="2025-03-06T16:40:13.255686" level="INFO">${unitPrice} = 40</msg>
+<var>${unitPrice}</var>
 <arg>${row}</arg>
-<arg>Date</arg>
+<arg>Unit Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.647078" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.255686" elapsed="0.000000"/>
 </kw>
-<if>
-<branch type="IF" condition="${amount} &lt;= 0">
-<kw name="Set To Dictionary" owner="Collections">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.256210" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
 <arg>${row}</arg>
-<arg>Amount=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.647589" elapsed="0.000000"/>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.255686" elapsed="0.000524"/>
 </kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.647078" elapsed="0.000511"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.647078" elapsed="0.000511"/>
-</if>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.647589" level="INFO">Length is 7.</msg>
-<msg time="2025-02-27T17:40:52.647589" level="INFO">${refnum_length} = 7</msg>
-<var>${refnum_length}</var>
-<arg>${refnum}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.647589" elapsed="0.000000"/>
-</kw>
-<kw name="Get Substring" owner="String">
-<msg time="2025-02-27T17:40:52.648096" level="INFO">${refnum_first_char} = 1</msg>
-<var>${refnum_first_char}</var>
-<arg>${refnum}</arg>
-<arg>0</arg>
-<arg>1</arg>
-<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.647589" elapsed="0.000507"/>
-</kw>
-<if>
-<branch type="IF" condition="${refnum_length} &lt; 3 or ${refnum_length} &gt; 20 or ${refnum_first_char} == 0">
-<kw name="Set To Dictionary" owner="Collections">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.256210" level="INFO">${vatTot} = 96</msg>
+<var>${vatTot}</var>
 <arg>${row}</arg>
-<arg>RefNum=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.648096" elapsed="0.000000"/>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.256210" elapsed="0.000000"/>
 </kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.648096" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.648096" elapsed="0.000000"/>
-</if>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.256210" level="INFO">${priceTot} = 496</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.256210" elapsed="0.000520"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.256730" level="INFO">${invNumber} = 2</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.256730" elapsed="0.000000"/>
+</kw>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.648604" level="INFO">${iban} = FI1234567890123456</msg>
-<var>${iban}</var>
-<arg>str("${iban}").replace(" ", "")</arg>
+<msg time="2025-03-06T16:40:13.257249" level="INFO">${calcTotal} = 496.0</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.648096" elapsed="0.000508"/>
+<status status="PASS" start="2025-03-06T16:40:13.256730" elapsed="0.000519"/>
 </kw>
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=${iban}</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.648604" elapsed="0.000000"/>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.257249" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.257249" elapsed="0.000000"/>
 </kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.648604" level="INFO">Length is 18.</msg>
-<msg time="2025-02-27T17:40:52.649114" level="INFO">${iban_length} = 18</msg>
-<var>${iban_length}</var>
-<arg>${iban}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.648604" elapsed="0.000510"/>
-</kw>
-<kw name="Get Substring" owner="String">
-<msg time="2025-02-27T17:40:52.649114" level="INFO">${iban_first_char} = FI</msg>
-<var>${iban_first_char}</var>
-<arg>${iban}</arg>
-<arg>0</arg>
-<arg>2</arg>
-<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.649114" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="&quot;${iban_first_char}&quot; != &quot;FI&quot; or ${iban_length} != 18">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.649114" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.649114" elapsed="0.000509"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.649114" elapsed="0.000509"/>
-</if>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Should Match Regexp" owner="BuiltIn">
-<arg>${iban}</arg>
-<arg>^FI[0-9]{16}$</arg>
-<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.649623" elapsed="0.000000"/>
-</kw>
-<msg time="2025-02-27T17:40:52.649623" level="INFO">${iban_validation} = True</msg>
-<var>${iban_validation}</var>
-<arg>Should Match Regexp</arg>
-<arg>${iban}</arg>
-<arg>^FI[0-9]{16}$</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.649623" elapsed="0.000000"/>
-</kw>
-<if>
-<branch type="IF" condition="not ${iban_validation}">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>IBAN=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.650139" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${iban_validation}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.650139" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.650139" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.650139" elapsed="0.000000"/>
-</if>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Should Match Regexp" owner="BuiltIn">
-<arg>${date}</arg>
-<arg>^((0?[1-9])|1[0-2])/((0?[1-9])|[12][0-9]|30|31)/[0-9]{4}$</arg>
-<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.650139" elapsed="0.000513"/>
-</kw>
-<msg time="2025-02-27T17:40:52.650652" level="INFO">${date_validation} = True</msg>
-<var>${date_validation}</var>
-<arg>Should Match Regexp</arg>
-<arg>${date}</arg>
-<arg>^((0?[1-9])|1[0-2])/((0?[1-9])|[12][0-9]|30|31)/[0-9]{4}$</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.650139" elapsed="0.000513"/>
-</kw>
-<if>
-<branch type="IF" condition="not ${date_validation}">
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>Date=invalid</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.650652" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${date_validation}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-02-27T17:40:52.650652" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2025-02-27T17:40:52.650652" elapsed="0.000000"/>
-</branch>
-<branch type="ELSE">
-<kw name="Convert Date" owner="DateTime">
-<msg time="2025-02-27T17:40:52.651159" level="INFO">${formatted_date} = 2022-12-15</msg>
-<var>${formatted_date}</var>
-<arg>${date}</arg>
-<arg>result_format=%Y-%m-%d</arg>
-<arg>date_format=%m/%d/%Y</arg>
-<doc>Converts between supported `date formats`.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.651159" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.651666" level="INFO">2022-12-15</msg>
-<arg>${formatted_date}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.651666" elapsed="0.000000"/>
-</kw>
-<kw name="Set To Dictionary" owner="Collections">
-<arg>${row}</arg>
-<arg>Date=${formatted_date}</arg>
-<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.651666" elapsed="0.000000"/>
-</kw>
-<status status="PASS" start="2025-02-27T17:40:52.650652" elapsed="0.001579"/>
-</branch>
-<status status="PASS" start="2025-02-27T17:40:52.650652" elapsed="0.001579"/>
-</if>
 <kw name="Connect To Database" owner="DatabaseLibrary">
-<msg time="2025-02-27T17:40:52.652231" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
-<msg time="2025-02-27T17:40:52.652231" level="INFO">Configuration file doesn't exist</msg>
-<msg time="2025-02-27T17:40:52.652767" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<msg time="2025-03-06T16:40:13.257777" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.257777" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.258296" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
 <arg>pymysql</arg>
 <arg>${DB_NAME}</arg>
 <arg>${DB_USER}</arg>
@@ -717,37 +348,627 @@ you can set any other DB module specific parameters as key/value pairs.</doc>
 <doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
 Along with listed commonly used arguments (`db_name`, `db_host` etc.)
 you can set any other DB module specific parameters as key/value pairs.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.652231" elapsed="0.004116"/>
+<status status="PASS" start="2025-03-06T16:40:13.257249" elapsed="0.004709"/>
 </kw>
 <kw name="Execute Sql String" owner="DatabaseLibrary">
-<msg time="2025-02-27T17:40:52.656855" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO invoices (amount,refnum,iban,date) VALUES (3348, 1531439, 'FI1234567890123456', '2022-12-15');&lt;/code&gt;</msg>
-<msg time="2025-02-27T17:40:52.657879" level="INFO">Commit the transaction</msg>
-<msg time="2025-02-27T17:40:52.661883" level="INFO">${result} = None</msg>
+<msg time="2025-03-06T16:40:13.261958" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Keyboard Logitech', 10, 'kpl', 40,24,96,496,2);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.262997" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.269269" level="INFO">${result} = None</msg>
 <var>${result}</var>
-<arg>INSERT INTO invoices (amount,refnum,iban,date) VALUES (${amount}, ${refnum}, '${iban}', '${formatted_date}');</arg>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
 <doc>Executes the ``sql_string`` as a single SQL command.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.656855" elapsed="0.005551"/>
+<status status="PASS" start="2025-03-06T16:40:13.261958" elapsed="0.007311"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-02-27T17:40:52.662406" level="INFO">None</msg>
+<msg time="2025-03-06T16:40:13.269791" level="INFO">None</msg>
 <arg>${result}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.662406" elapsed="0.000000"/>
+<status status="PASS" start="2025-03-06T16:40:13.269791" elapsed="0.000000"/>
 </kw>
 <kw name="Disconnect From Database" owner="DatabaseLibrary">
 <doc>Disconnects from the database.</doc>
-<status status="PASS" start="2025-02-27T17:40:52.662406" elapsed="0.000519"/>
+<status status="PASS" start="2025-03-06T16:40:13.269791" elapsed="0.000517"/>
 </kw>
-<var name="${row}">{'Amount': '3348', 'RefNum': '1531439', 'IBAN': ' FI12 3456 7890 1234 56', 'Date': '12/15/2022'}</var>
-<status status="PASS" start="2025-02-27T17:40:52.646036" elapsed="0.016889"/>
+<var name="${row}">{'Description': 'Keyboard Logitech', 'Quantity': '10', 'Unit': 'kpl', 'Unit Price': '40', 'VAT %': '24', 'VAT Total': '96', 'Total Price': '496', 'Invoice number': '2'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.254631" elapsed="0.015677"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.270858" level="INFO">${desc} = Brother printer</msg>
+<var>${desc}</var>
+<arg>${row}</arg>
+<arg>Description</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.270308" elapsed="0.000550"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.270858" level="INFO">${quan} = 1</msg>
+<var>${quan}</var>
+<arg>${row}</arg>
+<arg>Quantity</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.270858" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.271390" level="INFO">${unit} = kpl</msg>
+<var>${unit}</var>
+<arg>${row}</arg>
+<arg>Unit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.270858" elapsed="0.000532"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.271390" level="INFO">${unitPrice} = 65</msg>
+<var>${unitPrice}</var>
+<arg>${row}</arg>
+<arg>Unit Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.271390" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.271390" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
+<arg>${row}</arg>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.271390" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.271912" level="INFO">${vatTot} = 15.6</msg>
+<var>${vatTot}</var>
+<arg>${row}</arg>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.271912" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.271912" level="INFO">${priceTot} = 80.6</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.271912" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.272437" level="INFO">${invNumber} = 2</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.271912" elapsed="0.000525"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.272437" level="INFO">${calcTotal} = 80.6</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.272437" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.272964" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.272437" elapsed="0.000527"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.272964" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.272964" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.273486" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<arg>pymysql</arg>
+<arg>${DB_NAME}</arg>
+<arg>${DB_USER}</arg>
+<arg>${DB_PASS}</arg>
+<arg>${DB_HOST}</arg>
+<arg>${DB_PORT}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.272964" elapsed="0.003686"/>
+</kw>
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.277169" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Brother printer', 1, 'kpl', 65,24,15.6,80.6,2);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.278209" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.282968" level="INFO">${result} = None</msg>
+<var>${result}</var>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.276650" elapsed="0.006318"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.283485" level="INFO">None</msg>
+<arg>${result}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.283485" elapsed="0.000000"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.283485" elapsed="0.000524"/>
+</kw>
+<var name="${row}">{'Description': 'Brother printer', 'Quantity': '1', 'Unit': 'kpl', 'Unit Price': '65', 'VAT %': '24', 'VAT Total': '15.6', 'Total Price': '80.6', 'Invoice number': '2'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.270308" elapsed="0.013701"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.284530" level="INFO">${desc} = Installation Services</msg>
+<var>${desc}</var>
+<arg>${row}</arg>
+<arg>Description</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.284530" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.284530" level="INFO">${quan} = 5</msg>
+<var>${quan}</var>
+<arg>${row}</arg>
+<arg>Quantity</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.284530" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.285054" level="INFO">${unit} = h</msg>
+<var>${unit}</var>
+<arg>${row}</arg>
+<arg>Unit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.284530" elapsed="0.000524"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.285054" level="INFO">${unitPrice} = 60</msg>
+<var>${unitPrice}</var>
+<arg>${row}</arg>
+<arg>Unit Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.285054" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.285054" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
+<arg>${row}</arg>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.285054" elapsed="0.000527"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.285581" level="INFO">${vatTot} = 72</msg>
+<var>${vatTot}</var>
+<arg>${row}</arg>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.285581" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.285581" level="INFO">${priceTot} = 372</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.285581" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.286109" level="INFO">${invNumber} = 3</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.285581" elapsed="0.000528"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.286109" level="INFO">${calcTotal} = 372.0</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.286109" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.286648" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.286109" elapsed="0.000539"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.286648" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.286648" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.287170" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<arg>pymysql</arg>
+<arg>${DB_NAME}</arg>
+<arg>${DB_USER}</arg>
+<arg>${DB_PASS}</arg>
+<arg>${DB_HOST}</arg>
+<arg>${DB_PORT}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.286648" elapsed="0.003644"/>
+</kw>
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.290812" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Installation Services', 5, 'h', 60,24,72,372,3);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.291328" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.296687" level="INFO">${result} = None</msg>
+<var>${result}</var>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.290292" elapsed="0.006395"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.297364" level="INFO">None</msg>
+<arg>${result}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.297364" elapsed="0.000000"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.297364" elapsed="0.000524"/>
+</kw>
+<var name="${row}">{'Description': 'Installation Services', 'Quantity': '5', 'Unit': 'h', 'Unit Price': '60', 'VAT %': '24', 'VAT Total': '72', 'Total Price': '372', 'Invoice number': '3'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.284009" elapsed="0.013879"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.298411" level="INFO">${desc} = Replacement Products</msg>
+<var>${desc}</var>
+<arg>${row}</arg>
+<arg>Description</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.297888" elapsed="0.000523"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.298411" level="INFO">${quan} = 10</msg>
+<var>${quan}</var>
+<arg>${row}</arg>
+<arg>Quantity</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.298411" elapsed="0.000530"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.298941" level="INFO">${unit} = kpl</msg>
+<var>${unit}</var>
+<arg>${row}</arg>
+<arg>Unit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.298941" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.298941" level="INFO">${unitPrice} = 105</msg>
+<var>${unitPrice}</var>
+<arg>${row}</arg>
+<arg>Unit Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.298941" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.299469" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
+<arg>${row}</arg>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.299469" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.299469" level="INFO">${vatTot} = 252</msg>
+<var>${vatTot}</var>
+<arg>${row}</arg>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.299469" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.299980" level="INFO">${priceTot} = 1302</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.299469" elapsed="0.000511"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.299980" level="INFO">${invNumber} = 3</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.299980" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.300505" level="INFO">${calcTotal} = 1302.0</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.299980" elapsed="0.000525"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.300505" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.300505" elapsed="0.000000"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.301026" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.301026" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.301026" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<arg>pymysql</arg>
+<arg>${DB_NAME}</arg>
+<arg>${DB_USER}</arg>
+<arg>${DB_PASS}</arg>
+<arg>${DB_HOST}</arg>
+<arg>${DB_PORT}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.300505" elapsed="0.004203"/>
+</kw>
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.304708" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Replacement Products', 10, 'kpl', 105,24,252,1302,3);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.305750" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.310583" level="INFO">${result} = None</msg>
+<var>${result}</var>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.304708" elapsed="0.005875"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.311106" level="INFO">None</msg>
+<arg>${result}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.311106" elapsed="0.000000"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.311106" elapsed="0.000525"/>
+</kw>
+<var name="${row}">{'Description': 'Replacement Products', 'Quantity': '10', 'Unit': 'kpl', 'Unit Price': '105', 'VAT %': '24', 'VAT Total': '252', 'Total Price': '1302', 'Invoice number': '3'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.297888" elapsed="0.013743"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.312158" level="INFO">${desc} = Cleaning Services</msg>
+<var>${desc}</var>
+<arg>${row}</arg>
+<arg>Description</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.312158" elapsed="0.000550"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.312708" level="INFO">${quan} = 5</msg>
+<var>${quan}</var>
+<arg>${row}</arg>
+<arg>Quantity</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.312708" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.312708" level="INFO">${unit} = h</msg>
+<var>${unit}</var>
+<arg>${row}</arg>
+<arg>Unit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.312708" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.312708" level="INFO">${unitPrice} = 60</msg>
+<var>${unitPrice}</var>
+<arg>${row}</arg>
+<arg>Unit Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.312708" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.312708" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
+<arg>${row}</arg>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.312708" elapsed="0.001006"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.313714" level="INFO">${vatTot} = 72</msg>
+<var>${vatTot}</var>
+<arg>${row}</arg>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.313714" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.313714" level="INFO">${priceTot} = 372</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.313714" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.313714" level="INFO">${invNumber} = 3</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.313714" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.314712" level="INFO">${calcTotal} = 372.0</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.314712" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.314712" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.314712" elapsed="0.000000"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.314712" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.314712" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.315712" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<arg>pymysql</arg>
+<arg>${DB_NAME}</arg>
+<arg>${DB_USER}</arg>
+<arg>${DB_PASS}</arg>
+<arg>${DB_HOST}</arg>
+<arg>${DB_PORT}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.314712" elapsed="0.004167"/>
+</kw>
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.318879" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Cleaning Services', 5, 'h', 60,24,72,372,3);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.319923" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.325263" level="INFO">${result} = None</msg>
+<var>${result}</var>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.318879" elapsed="0.006384"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.325792" level="INFO">None</msg>
+<arg>${result}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.325792" elapsed="0.000000"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.325792" elapsed="0.000522"/>
+</kw>
+<var name="${row}">{'Description': 'Cleaning Services', 'Quantity': '5', 'Unit': 'h', 'Unit Price': '60', 'VAT %': '24', 'VAT Total': '72', 'Total Price': '372', 'Invoice number': '3'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.312158" elapsed="0.014156"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.326851" level="INFO">${desc} = Cleaning Wipes</msg>
+<var>${desc}</var>
+<arg>${row}</arg>
+<arg>Description</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.326851" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.326851" level="INFO">${quan} = 10</msg>
+<var>${quan}</var>
+<arg>${row}</arg>
+<arg>Quantity</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.326851" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.327374" level="INFO">${unit} = kpl</msg>
+<var>${unit}</var>
+<arg>${row}</arg>
+<arg>Unit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.327374" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.327374" level="INFO">${unitPrice} = 105</msg>
+<var>${unitPrice}</var>
+<arg>${row}</arg>
+<arg>Unit Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.327374" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.327892" level="INFO">${vatPerc} = 24</msg>
+<var>${vatPerc}</var>
+<arg>${row}</arg>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.327374" elapsed="0.000518"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.327892" level="INFO">${vatTot} = 252</msg>
+<var>${vatTot}</var>
+<arg>${row}</arg>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.327892" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.327892" level="INFO">${priceTot} = 1302</msg>
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.327892" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-06T16:40:13.328410" level="INFO">${invNumber} = 3</msg>
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.327892" elapsed="0.000518"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.328410" level="INFO">${calcTotal} = 1302.0</msg>
+<var>${calcTotal}</var>
+<arg>${quan} * ${unitPrice} * ((${vatPerc}/100) + 1)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.328410" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.328960" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${calcTotal}</arg>
+<arg>${priceTot}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.328960" elapsed="0.000000"/>
+</kw>
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.328960" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-06T16:40:13.329492" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-06T16:40:13.329492" level="INFO">Connect to DB using : pymysql.connect(db='RPAdb', user=***, passwd=***, host='127.0.0.1', port=3306, charset='utf8mb4')</msg>
+<arg>pymysql</arg>
+<arg>${DB_NAME}</arg>
+<arg>${DB_USER}</arg>
+<arg>${DB_PASS}</arg>
+<arg>${DB_HOST}</arg>
+<arg>${DB_PORT}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.328960" elapsed="0.003766"/>
+</kw>
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2025-03-06T16:40:13.333772" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('Cleaning Wipes', 10, 'kpl', 105,24,252,1302,3);&lt;/code&gt;</msg>
+<msg time="2025-03-06T16:40:13.334321" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-06T16:40:13.339628" level="INFO">${result} = None</msg>
+<var>${result}</var>
+<arg>INSERT INTO products (description,quantity,unit,unitprice,vatPerc,varTot,priceTot,invoiceNr) VALUES ('${desc}', ${quan}, '${unit}', ${unitPrice},${vatPerc},${vatTot},${priceTot},${invNumber});</arg>
+<doc>Executes the ``sql_string`` as a single SQL command.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.333248" elapsed="0.006904"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-06T16:40:13.340152" level="INFO">None</msg>
+<arg>${result}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.340152" elapsed="0.000521"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-06T16:40:13.340673" elapsed="0.000000"/>
+</kw>
+<var name="${row}">{'Description': 'Cleaning Wipes', 'Quantity': '10', 'Unit': 'kpl', 'Unit Price': '105', 'VAT %': '24', 'VAT Total': '252', 'Total Price': '1302', 'Invoice number': '3'}</var>
+<status status="PASS" start="2025-03-06T16:40:13.326314" elapsed="0.014880"/>
 </iter>
 <var>${row}</var>
 <value>@{loaded_data}</value>
-<status status="PASS" start="2025-02-27T17:40:52.538366" elapsed="0.124559"/>
+<status status="PASS" start="2025-03-06T16:40:13.173500" elapsed="0.167694"/>
 </for>
-<status status="PASS" start="2025-02-27T17:40:52.534449" elapsed="0.129025"/>
+<status status="PASS" start="2025-03-06T16:40:13.168449" elapsed="0.173272"/>
 </test>
-<status status="PASS" start="2025-02-27T17:40:52.426749" elapsed="0.237764"/>
+<status status="PASS" start="2025-03-06T16:40:13.025083" elapsed="0.317686"/>
 </suite>
 <statistics>
 <total>

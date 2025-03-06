@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.11.0 on win32)" generated="2025-03-06T15:31:45.709487" rpa="false" schemaversion="5">
+<suite id="s1" name="Invoice Verification" source="c:\Users\julko\Desktop\School Stuff\sraa\RPA Project\robotframework\invoice_verification.robot">
+<test id="s1-t1" name="Invoice Product Verification" line="87">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-06T15:31:45.824017" level="INFO">${excel_filepath} = tempProd.csv</msg>
+<var>${excel_filepath}</var>
+<arg>tempProd.csv</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-06T15:31:45.824017" elapsed="0.001193"/>
+</kw>
+<kw name="Read table from CSV" owner="RPA.Tables">
+<msg time="2025-03-06T15:31:45.826266" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: 'tempProd.csv'</msg>
+<var>${loaded_data}</var>
+<arg>${excel_filepath}</arg>
+<arg>header=True</arg>
+<doc>Read a CSV file as a table.</doc>
+<status status="FAIL" start="2025-03-06T15:31:45.826266" elapsed="0.015187">FileNotFoundError: [Errno 2] No such file or directory: 'tempProd.csv'</status>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${desc}</var>
+<arg>${row}</arg>
+<arg>Desccription</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.841453" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${quan}</var>
+<arg>${row}</arg>
+<arg>Quantity</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.841453" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${unit}</var>
+<arg>${row}</arg>
+<arg>Unit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.842874" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${unitPrice}</var>
+<arg>${row}</arg>
+<arg>Unit Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.842874" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${vatPerc}</var>
+<arg>${row}</arg>
+<arg>VAT %</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.842874" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${vatTot}</var>
+<arg>${row}</arg>
+<arg>VAT Total</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.842874" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${priceTot}</var>
+<arg>${row}</arg>
+<arg>Total Price</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.842874" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${invNumber}</var>
+<arg>${row}</arg>
+<arg>Invoice Number</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-03-06T15:31:45.842874" elapsed="0.000000"/>
+</kw>
+<var name="${row}"/>
+<status status="NOT RUN" start="2025-03-06T15:31:45.841453" elapsed="0.001421"/>
+</iter>
+<var>${row}</var>
+<value>@{loaded_data}</value>
+<status status="NOT RUN" start="2025-03-06T15:31:45.841453" elapsed="0.001421"/>
+</for>
+<status status="FAIL" start="2025-03-06T15:31:45.822822" elapsed="0.021079">FileNotFoundError: [Errno 2] No such file or directory: 'tempProd.csv'</status>
+</test>
+<status status="FAIL" start="2025-03-06T15:31:45.711991" elapsed="0.132912"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Invoice Verification" id="s1" pass="0" fail="1" skip="0">Invoice Verification</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
